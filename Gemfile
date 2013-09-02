@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
+
 gem 'rails', '4.0.0'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.0'
@@ -8,14 +9,18 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+
 group :doc do
   gem 'sdoc', require: false
 end
+
 gem 'bootstrap-sass'
 gem 'figaro'
 gem 'haml-rails'
 gem 'protected_attributes'
+
 group :development do
+  gem 'annotate', ">=2.5.0"
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
   gem 'guard-bundler'
@@ -26,13 +31,16 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
 end
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'thin'
 end
+
 group :production do
   gem 'unicorn'
 end
+
 group :test do
   gem 'capybara'
   gem 'minitest-spec-rails'
