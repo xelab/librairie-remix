@@ -10,4 +10,7 @@
 #
 
 class Collection < ActiveRecord::Base
+	belongs_to :publisher
+  has_many :books, dependent: :destroy
+
 end
