@@ -15,7 +15,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 2.3.2.1'
 gem 'figaro'
 gem 'haml-rails'
 gem 'protected_attributes'

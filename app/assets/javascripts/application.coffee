@@ -3,5 +3,8 @@
 #= require bootstrap
 #= require turbolinks
 #= require angular.min
+#= require ui-bootstrap-tpls-0.6.0.min
 #= require ng-grid-2.0.7.min
+#= require angular/app
+#= require_tree ./angular/controllers
 #= require_tree .
