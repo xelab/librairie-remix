@@ -1,3 +1,43 @@
 %div(ng-controller='BooksCtrl')
-  %button.btn() Nouveau livre
+  %form.form-horizontal(ng-submit='createBook()' ng-show='showForm')
+    .row-fluid
+      .span6
+        .control-group
+          %label.control-label
+            Titre
+          .controls
+            %input(type='text' ng-model='book.title' required)
+
+        .control-group
+          %label.control-label
+            ISBN
+          .controls
+            %input(type='text' ng-model='book.isbn')
+
+        .control-group
+          %label.control-label
+            Éditeur
+          .controls
+            .row-fluid
+              .span10
+                %select(ng-model='book.publisher_id' ng-options='publisher.id as publisher.name for publisher in publisher')
+              .span2
+                .btn(ng-click='addPublisher()') +
+
+        .control-group
+          %label.control-label
+            Collection
+          .controls
+            %select(ng-model='book.collection_id' ng-options='collection.id as collection.name for collection in publisher.collections')
+      .span6
+        .control-group
+          %label.control-label
+            Résumé
+          .controls
+            %textarea(ng-model='book.resume')
+
+
+  %button.btn(ng-click='showForm=!showForm' ng-hide='showForm') Nouveau livre
+  %button.btn(ng-click='showForm=!showForm' ng-show='showForm') Annuler
+  .grid(ng-grid= "gridOptions")
 

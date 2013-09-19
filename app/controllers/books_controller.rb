@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   def index
     @books = Book.all
+    @collections = Collection.all
+    @publishers = Publisher.all
   end
 
   def update
