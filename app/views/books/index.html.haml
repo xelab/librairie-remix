@@ -1,43 +1,57 @@
 %div(ng-controller='BooksCtrl')
-  %form.form-horizontal(ng-submit='createBook()' ng-show='showForm')
-    .row-fluid
-      .span6
-        .control-group
-          %label.control-label
-            Titre
-          .controls
-            %input(type='text' ng-model='book.title' required)
+  %form.form-horizontal(ng-submit='createBook()' ng-show='showForm' role='form')
+    .row
+      .col-md-6
+        .form-group
+          %label.col-lg-2.control-label(for='title') Titre
+          .col-lg-10
+            %input.form-control(id='title' type='text' ng-model='book.title' required)
 
-        .control-group
-          %label.control-label
-            ISBN
-          .controls
-            %input(type='text' ng-model='book.isbn')
+        .form-group
+          %label.col-lg-2.control-label(for='isbn') ISBN
+          .col-lg-10
+            %input.form-control(type='text' id='isbn' ng-model='book.isbn')
 
-        .control-group
-          %label.control-label
+        .form-group
+          %label.col-lg-2.control-label(for='pusblisher')
             Éditeur
-          .controls
-            .row-fluid
-              .span10
-                %select(ng-model='book.publisher_id' ng-options='publisher.id as publisher.name for publisher in publisher')
-              .span2
-                .btn(ng-click='addPublisher()') +
+          .col-lg-10
+            .input-group
+              %select.form-control(ng-model='book.publisher_id' ng-options='publisher.id as publisher.name for publisher in publisher' id='publisher')
+              %span.input-group-btn
+                %button.btn.btn-default(type='button' ng-click='addPublisher()') +
 
-        .control-group
-          %label.control-label
+        .form-group
+          %label.col-lg-2.control-label(for='collection')
             Collection
-          .controls
-            %select(ng-model='book.collection_id' ng-options='collection.id as collection.name for collection in publisher.collections')
-      .span6
-        .control-group
-          %label.control-label
+          .col-lg-10
+            .input-group
+              %select.form-control(ng-model='book.collection_id' ng-options='collection.id as collection.name for collection in publisher.collections' id='collection')
+              %span.input-group-btn
+                %button.btn.btn-default(type='button' ng-click='addCollection()') +
+
+        .form-group
+          %label.col-lg-2.control-label(for='author')
+            Auteurs
+          .col-lg-10
+            .input-group
+              %select.form-control(ui-select2="select2Options" ng-model="book.authors" data-placeholder="Choisissez un auteur")
+                %option(value="")
+                / %option(ng-repeat="author in authors" value="{{author.name}}")
+              %span.input-group-btn
+                %button.btn.btn-default(type='button' ng-click='addAuthor()') +
+      .col-md-6
+        .form-group
+          %label.col-lg-2.control-label(for='resume')
             Résumé
-          .controls
-            %textarea(ng-model='book.resume')
+          .col-lg-10
+            %textarea.form-control(ng-model='book.resume' id='resume')
 
 
-  %button.btn(ng-click='showForm=!showForm' ng-hide='showForm') Nouveau livre
-  %button.btn(ng-click='showForm=!showForm' ng-show='showForm') Annuler
-  .grid(ng-grid= "gridOptions")
+  %button.btn.btn-default(ng-click='showForm=!showForm' ng-hide='showForm') Nouveau livre
+  %button.btn.btn-default(ng-click='showForm=!showForm' ng-show='showForm') Annuler
+  
+  = render 'author'
+
+  .grid(ng-grid="gridOptions")
 

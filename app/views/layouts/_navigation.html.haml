@@ -1,1 +1,15 @@
-= link_to "Librairie Remix", root_path, :class => 'brand'
+.navbar-header
+  %button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse")
+    %span.sr-only
+    %span.icon-bar
+    %span.icon-bar
+    %span.icon-bar
+
+  = link_to "Librairie Remix", root_path, :class => 'brand'
+
+.collapse.navbar-collapse.navbar-ex1-collapse
+  %ul.nav.navbar-nav
+    %li
+      %a(href="/livres") Livres
+
+  

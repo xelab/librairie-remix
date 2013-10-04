@@ -1,4 +1,4 @@
-@app = angular.module 'Librairie', []
+@app = angular.module 'Librairie', ['ui.select2']
 
 @app
   .config(['$httpProvider', ($httpProvider) ->

@@ -3,6 +3,7 @@ class BooksController < ApplicationController
     @books = Book.all
     @collections = Collection.all
     @publishers = Publisher.all
+    @authors = Author.all
   end
 
   def update
