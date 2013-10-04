@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require jquery.ui.all
 #= require bootstrap
 #= require turbolinks
 #= require angular.min
@@ -9,5 +10,6 @@
 #= require select2_locale_fr
 #= require ng-select2
 #= require angular/app
+#= require portBox.slimscroll.min
 #= require_tree ./angular/controllers
 #= require_tree .

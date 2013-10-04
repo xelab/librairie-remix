@@ -1,0 +1,23 @@
+#authorBox.portBox
+  .row
+    .col-md-12
+      %form.form-horizontal(ng-submit='createAuthor()' role='form')
+        .form-group
+          %label.col-lg-3.control-label(for='lastname') Nom
+          .col-lg-9
+            %input.form-control(id='lastname' type='text' ng-model='author.lastname' required)
+
+        .form-group
+          %label.col-lg-3.control-label(for='firstname') Prénom
+          .col-lg-9
+            %input.form-control(type='text' id='firstname' ng-model='author.firstname')
+
+        .form-group
+          %label.col-lg-3.control-label(for='birthdate') Né le
+          .col-lg-9
+            %input.form-control(type='date' id='birthdate' ng-model='author.birthdate')
+
+        .form-group
+          %label.col-lg-3.control-label(for='deathdate') Décès
+          .col-lg-9
+            %input.form-control(type='date' id='deathdate' ng-model='author.deathdate')

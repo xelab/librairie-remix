@@ -8,3 +8,7 @@ json.publishers @publishers do |publisher|
     json.(collection, :id, :name, :publisher_id)
   end
 end
+
+json.authors @authors
+
+json.distributors @distributors

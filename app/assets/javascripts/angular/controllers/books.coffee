@@ -4,6 +4,7 @@
     $scope.publishers = data.publishers
     $scope.books = data.books
     $scope.authors = data.authors
+    $scope.distributors = data.distributors
     $scope.gridOptions = 
       data: '$scope.books'
 
@@ -11,5 +12,6 @@
   $scope.select2Options =
     allowClear: true
     multiple: true
+
 
 ]

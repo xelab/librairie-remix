@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130919131509) do
+ActiveRecord::Schema.define(version: 20131004100926) do
 
   create_table "authors", force: true do |t|
     t.string   "lastname"
@@ -22,19 +22,31 @@ ActiveRecord::Schema.define(version: 20130919131509) do
     t.datetime "updated_at"
   end
 
+  create_table "authors_books", id: false, force: true do |t|
+    t.integer "author_id", null: false
+    t.integer "book_id",   null: false
+  end
+
+  add_index "authors_books", ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id"
+  add_index "authors_books", ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id"
+
   create_table "books", force: true do |t|
     t.integer  "isbn"
     t.integer  "collection_id"
     t.integer  "publisher_id"
-    t.decimal  "price",         precision: 8, scale: 2
+    t.decimal  "price",          precision: 8, scale: 2
     t.date     "release"
     t.string   "title"
     t.text     "summary"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "deposit"
+    t.integer  "buy"
+    t.integer  "distributor_id"
   end
 
   add_index "books", ["collection_id"], name: "index_books_on_collection_id"
+  add_index "books", ["distributor_id"], name: "index_books_on_distributor_id"
   add_index "books", ["publisher_id"], name: "index_books_on_publisher_id"
 
   create_table "collections", force: true do |t|
@@ -45,6 +57,12 @@ ActiveRecord::Schema.define(version: 20130919131509) do
   end
 
   add_index "collections", ["publisher_id"], name: "index_collections_on_publisher_id"
+
+  create_table "distributors", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "publishers", force: true do |t|
     t.string   "name"

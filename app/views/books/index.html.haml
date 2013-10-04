@@ -19,7 +19,7 @@
             .input-group
               %select.form-control(ng-model='book.publisher_id' ng-options='publisher.id as publisher.name for publisher in publisher' id='publisher')
               %span.input-group-btn
-                %button.btn.btn-default(type='button' ng-click='addPublisher()') +
+                %a.btn.btn-default(href="#" data-display="publisherBox") +
 
         .form-group
           %label.col-lg-2.control-label(for='collection')
@@ -28,7 +28,7 @@
             .input-group
               %select.form-control(ng-model='book.collection_id' ng-options='collection.id as collection.name for collection in publisher.collections' id='collection')
               %span.input-group-btn
-                %button.btn.btn-default(type='button' ng-click='addCollection()') +
+                %button.btn.btn-default(type='button' ng-click='open("collection")') +
 
         .form-group
           %label.col-lg-2.control-label(for='author')
@@ -39,8 +39,23 @@
                 %option(value="")
                 / %option(ng-repeat="author in authors" value="{{author.name}}")
               %span.input-group-btn
-                %button.btn.btn-default(type='button' ng-click='addAuthor()') +
+                %a.btn.btn-default(href="#" data-display="authorBox") +
       .col-md-6
+
+        .form-group
+          %label.col-lg-2.control-label(for='price') Prix
+          .col-lg-10
+            %input.form-control(id='price' type='text' ng-model='book.price' required)
+
+        .form-group
+          %label.col-lg-2.control-label(for='distributor')
+            Distributeur
+          .col-lg-10
+            .input-group
+              %select.form-control(ng-model='book.distributor_id' ng-options='distributor.id as distributor.name for distributor in distributors' id='distributor')
+              %span.input-group-btn
+                %button.btn.btn-default(type='button' ng-click='open("distributor")') +
+
         .form-group
           %label.col-lg-2.control-label(for='resume')
             Résumé
