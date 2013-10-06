@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131004100926) do
+ActiveRecord::Schema.define(version: 20131006202024) do
 
   create_table "authors", force: true do |t|
     t.string   "lastname"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20131004100926) do
   add_index "books", ["distributor_id"], name: "index_books_on_distributor_id"
   add_index "books", ["publisher_id"], name: "index_books_on_publisher_id"
 
+  create_table "books_tags", id: false, force: true do |t|
+    t.integer "book_id", null: false
+    t.integer "tag_id",  null: false
+  end
+
+  add_index "books_tags", ["book_id", "tag_id"], name: "index_books_tags_on_book_id_and_tag_id"
+  add_index "books_tags", ["tag_id", "book_id"], name: "index_books_tags_on_tag_id_and_book_id"
+
   create_table "collections", force: true do |t|
     t.integer  "publisher_id"
     t.string   "name"
@@ -71,6 +79,12 @@ ActiveRecord::Schema.define(version: 20131004100926) do
     t.string   "zip"
     t.string   "phone"
     t.string   "mail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

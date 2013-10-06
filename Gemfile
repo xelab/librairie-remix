@@ -22,6 +22,7 @@ gem 'haml-rails'
 gem 'protected_attributes'
 
 group :development do
+  gem 'pry'
   gem 'annotate', ">=2.5.0"
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]

@@ -11,5 +11,6 @@
 #= require ng-select2
 #= require angular/app
 #= require portBox.slimscroll.min
+#= require underscore.js
 #= require_tree ./angular/controllers
 #= require_tree .
