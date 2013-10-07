@@ -19,7 +19,6 @@ end
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
 gem 'figaro'
 gem 'haml-rails'
-gem 'protected_attributes'
 
 group :development do
   gem 'pry'

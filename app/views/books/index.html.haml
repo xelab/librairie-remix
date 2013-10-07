@@ -59,7 +59,7 @@
         .form-group
           %label.col-lg-2.control-label(for='price') Prix
           .col-lg-10
-            %input.form-control(id='price' type='text' ng-model='book.price' required)
+            %input.form-control(id='price' type='text' ng-model='book.price')
 
         .form-group
           %label.col-lg-2.control-label(for='buy') Qté achat ferme
@@ -95,5 +95,5 @@
   
   = render 'author'
 
-  .grid(ng-grid="gridOptions")
+  .books-grid(ng-grid="gridOptions")
 

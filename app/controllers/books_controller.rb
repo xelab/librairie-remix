@@ -15,11 +15,13 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.create(params[:book])
+    @book = Book.new(book_params)
     unless @book.price.present?
       @book.price = 0
     end  
-    render json: @book.id
+    if @book.save
+      render json: @book.id
+    end
   end
 
   def destroy
@@ -27,4 +29,9 @@ class BooksController < ApplicationController
 
   def new
   end
+
+  private
+    def book_params
+      params.require(:book).permit(:title, :price, :summary, :isbn, :release, :buy, :deposit, :distributor_id, :publisher_id, :collection_id)
+    end
 end

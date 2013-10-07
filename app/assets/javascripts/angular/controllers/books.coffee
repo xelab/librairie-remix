@@ -1,4 +1,4 @@
-@BooksCtrl = ['$scope', '$http', '$timeout', ($scope, $http, $timeout) ->
+@BooksCtrl = ['$scope', '$http', '$timeout', 'Author', ($scope, $http, $timeout, Author) ->
 
   $scope.gridOptions = 
     data: 'books'
@@ -28,5 +28,10 @@
       $scope.book.id = data
       $scope.books.push $scope.book
       $scope.book = {}
+
+  $scope.createAuthor = ->
+    $scope.author.id = Author.save({}, author: $scope.author)
+    $scope.authors.push $scope.author
+    $scope.book.authors.push $scope.author.id
 
 ]
