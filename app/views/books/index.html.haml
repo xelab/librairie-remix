@@ -19,7 +19,7 @@
             .input-group
               %select.form-control(ng-model='book.distributor_id' ng-options='distributor.id as distributor.name for distributor in distributors' id='distributor')
               %span.input-group-btn
-                %button.btn.btn-default(type='button' ng-click='open("distributor")') +
+                %button.btn.btn-default(type='button' ng-click='open("distributor")' title="Créer un nouveau distributeur") +
 
         .form-group
           %label.col-lg-2.control-label(for='pusblisher')
@@ -28,7 +28,7 @@
             .input-group
               %select.form-control(ng-model='book.publisher_id' ng-options='publisher.id as publisher.name for publisher in publisher' id='publisher')
               %span.input-group-btn
-                %a.btn.btn-default(href="#" data-display="publisherBox") +
+                %a.btn.btn-default(href="#" data-display="publisherBox" title="Créer un nouvel éditeur") +
 
         .form-group
           %label.col-lg-2.control-label(for='collection')
@@ -37,18 +37,18 @@
             .input-group
               %select.form-control(ng-model='book.collection_id' ng-options='collection.id as collection.name for collection in publisher.collections' id='collection')
               %span.input-group-btn
-                %button.btn.btn-default(type='button' ng-click='open("collection")') +
+                %button.btn.btn-default(type='button' ng-click='open("collection")' title="Créer une nouvelle collection") +
 
         .form-group
           %label.col-lg-2.control-label(for='author')
             Auteurs
           .col-lg-10
             .input-group
-              %select.form-control(ui-select2="select2Options" ng-model="book.authors" data-placeholder="Choisissez un auteur")
+              %select.form-control(ui-select2="select2Options" ng-model="book.authors" data-placeholder="Choisissez un auteur" multiple="multiple")
                 %option(value="")
                 %option(ng-repeat="author in authors" value="{{author.id}}") {{ author.lastname }} {{ author.firstname }}
               %span.input-group-btn
-                %a.btn.btn-default(href="#" data-display="authorBox") +
+                %a.btn.btn-default(href="#" data-display="authorBox" title="Créer un nouvel auteur") +
 
         .form-group
           .col-lg-2
@@ -76,11 +76,11 @@
             Catégories
           .col-lg-10
             .input-group
-              %select.form-control(ui-select2="select2Options" ng-model="book.tags" data-placeholder="Choisissez une catégorie")
+              %select.form-control(ui-select2="select2Options" ng-model="book.tags" data-placeholder="Choisissez une catégorie"  multiple="multiple")
                 %option(value="")
                 %option(ng-repeat="tag in tags" value="{{tag.id}}") {{ tag.name}}
               %span.input-group-btn
-                %a.btn.btn-default(href="#" data-display="tagBox") +
+                %a.btn.btn-default(href="#" data-display="tagBox" title="Créer une nouvelle catégorie") +
 
         .form-group
           %label.col-lg-2.control-label(for='resume')

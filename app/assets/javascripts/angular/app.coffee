@@ -1,4 +1,4 @@
-@app = angular.module 'Librairie', ['ui.select2', 'ngGrid']
+@app = angular.module 'Librairie', ['ngResource','ui.select2', 'ngGrid']
 
 @app
   .config(['$httpProvider', ($httpProvider) ->

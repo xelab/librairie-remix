@@ -4,6 +4,7 @@
 #= require bootstrap
 #= require turbolinks
 #= require angular.min
+#= require angular-resource.min
 #= require ui-bootstrap-tpls-0.6.0.min
 #= require ng-grid-2.0.7.min
 #= require select2.min
@@ -12,5 +13,6 @@
 #= require angular/app
 #= require portBox.slimscroll.min
 #= require underscore.js
+#= require_tree ./angular/factories
 #= require_tree ./angular/controllers
 #= require_tree .

@@ -26,14 +26,8 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(author_params)
 
-    respond_to do |format|
-      if @author.save
-        format.html { redirect_to @author, notice: 'Author was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @author }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
-      end
+    if @author.save
+      render json: @author.id
     end
   end
 
@@ -69,6 +63,6 @@ class AuthorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def author_params
-      params[:author]
+      params.require(:author).permit(:lastname, :firstname, :birthdate, :deathdate)
     end
 end
