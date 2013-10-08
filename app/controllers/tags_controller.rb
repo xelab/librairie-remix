@@ -27,7 +27,7 @@ class TagsController < ApplicationController
     @tag = Tag.new(tag_params)
 
     if @tag.save
-      render json: @tag.id
+      render json: { id: @tag.id}
     end
   end
 

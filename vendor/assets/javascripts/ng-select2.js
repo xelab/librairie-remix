@@ -5,6 +5,9 @@
  *     This change is so that you do not have to do an additional query yourself on top of Select2's own query
  * @params [options] {object} The configuration options passed to $.fn.select2(). Refer to the documentation
  */
+
+ // 114: hacked select2, works fine now...
+ 
 angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelect2', ['uiSelect2Config', '$timeout', function (uiSelect2Config, $timeout) {
   var options = {};
   if (uiSelect2Config) {
@@ -111,7 +114,7 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
 
           // Watch the options dataset for changes
           if (watch) {
-            scope.$watch(watch, function (newVal, oldVal, scope) {
+            scope.$watchCollection(watch, function (newVal, oldVal, scope) {
               if (!newVal) {
                 return;
               }
