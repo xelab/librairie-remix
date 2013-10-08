@@ -26,14 +26,8 @@ class PublishersController < ApplicationController
   def create
     @publisher = Publisher.new(publisher_params)
 
-    respond_to do |format|
-      if @publisher.save
-        format.html { redirect_to @publisher, notice: 'Publisher was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @publisher }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @publisher.errors, status: :unprocessable_entity }
-      end
+    if @publisher.save
+      render json: @publisher.id
     end
   end
 
@@ -69,6 +63,6 @@ class PublishersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publisher_params
-      params[:publisher]
+      params.require(:publisher).permit(:name, :address, :mail, :phone, :city, :zip)
     end
 end

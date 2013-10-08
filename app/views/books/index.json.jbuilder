@@ -1,5 +1,8 @@
 json.books @books do |book|
   json.(book, :id, :title, :buy, :deposit, :isbn, :price, :release, :title, :summary)
+  json.authors book.authors do |author|
+    json.(author, :lastname, :firstname)
+  end
 end
 
 json.publishers @publishers do |publisher|
@@ -12,3 +15,5 @@ end
 json.authors @authors
 
 json.distributors @distributors
+
+json.tags @tags

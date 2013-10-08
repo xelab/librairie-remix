@@ -1,38 +1,38 @@
-#publisherBox.portBox
-  %h3 Nouvel éditeur
+#distributorBox.portBox
+  %h3 Nouveau distributeur
   %h4 Seul le nom est obligatoire
   .row
     .col-md-12
-      %form.form-horizontal(ng-submit='createPublisher()' role='form')
+      %form.form-horizontal(ng-submit='createDistributor()' role='form')
         .form-group
           %label.col-lg-3.control-label(for='name') Nom
           .col-lg-9
-            %input.form-control(id='name' type='text' ng-model='publisher.name' required)
+            %input.form-control(id='name' type='text' ng-model='distributor.name' required)
 
         .form-group
           %label.col-lg-3.control-label(for='mail') Email
           .col-lg-9
-            %input.form-control(id='mail' type='text' ng-model='publisher.mail')
+            %input.form-control(id='mail' type='text' ng-model='distributor.mail')
 
         .form-group
           %label.col-lg-3.control-label(for='phone') Téléphone
           .col-lg-9
-            %input.form-control(id='phone' type='text' ng-model='publisher.phone')
+            %input.form-control(id='phone' type='text' ng-model='distributor.phone')
 
         .form-group
           %label.col-lg-3.control-label(for='address') Adresse
           .col-lg-9
-            %textarea.form-control(id='address' ng-model='publisher.address')
+            %textarea.form-control(id='address' ng-model='distributor.address')
 
         .form-group
           %label.col-lg-3.control-label(for='city') Ville
           .col-lg-9
-            %input.form-control(type='text' id='city' ng-model='publisher.city')
+            %input.form-control(type='text' id='city' ng-model='distributor.city')
 
         .form-group
           %label.col-lg-3.control-label(for='zip') Code postal
           .col-lg-9
-            %input.form-control(type='text' id='zip' ng-model='publisher.zip')
+            %input.form-control(type='text' id='zip' ng-model='distributor.zip')
 
         
         %button.btn.btn-primary(type="submit") Valider

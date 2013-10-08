@@ -26,14 +26,8 @@ class DistributorsController < ApplicationController
   def create
     @distributor = Distributor.new(distributor_params)
 
-    respond_to do |format|
-      if @distributor.save
-        format.html { redirect_to @distributor, notice: 'Distributor was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @distributor }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @distributor.errors, status: :unprocessable_entity }
-      end
+    if @distributor.save
+      render json: @distributor.id
     end
   end
 
@@ -69,6 +63,6 @@ class DistributorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def distributor_params
-      params[:distributor]
+      params.require(:distributor).permit(:name, :address, :mail, :phone, :city, :zip)
     end
 end

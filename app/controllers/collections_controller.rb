@@ -24,16 +24,10 @@ class CollectionsController < ApplicationController
   # POST /collections
   # POST /collections.json
   def create
-    @collection = Collection.new(collection_params)
+    @collection = Author.new(author_params)
 
-    respond_to do |format|
-      if @collection.save
-        format.html { redirect_to @collection, notice: 'Collection was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @collection }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @collection.errors, status: :unprocessable_entity }
-      end
+    if @collection.save
+      render json: @collection.id
     end
   end
 
@@ -69,6 +63,6 @@ class CollectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_params
-      params[:collection]
+      params.require(:collection).permit(:name, :publisher_id)
     end
 end

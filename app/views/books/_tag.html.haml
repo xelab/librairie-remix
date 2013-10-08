@@ -1,0 +1,11 @@
+#tagBox.portBox
+  %h3 Nouvelle catégorie
+  .row
+    .col-md-12
+      %form.form-horizontal(ng-submit='createTag()' role='form')
+        .form-group
+          %label.col-lg-3.control-label(for='name') Nom
+          .col-lg-9
+            %input.form-control(id='name' type='text' ng-model='tag.name' required)
+        
+        %button.btn.btn-primary(type="submit") Valider

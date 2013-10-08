@@ -1,0 +1,11 @@
+#collectionBox.portBox
+  %h3 Nouvelle collection pour l'éditeur {{ publisher.name }}
+  .row
+    .col-md-12
+      %form.form-horizontal(ng-submit='createCollection()' role='form')
+        .form-group
+          %label.col-lg-3.control-label(for='name') Nom
+          .col-lg-9
+            %input.form-control(id='name' type='text' ng-model='collection.name' required)
+        
+        %button.btn.btn-primary(type="submit") Valider

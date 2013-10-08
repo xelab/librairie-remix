@@ -3,17 +3,20 @@
   $scope.gridOptions = 
     data: 'books'
     columnDefs: [{field:'title', displayName: 'Titre'},
-                {field:'buy', displayName: 'Ferme'},
-                {field:'deposit', displayName: 'Dépôt'},
+                {field:'buy', displayName: 'Stock achats fermes'},
+                {field:'deposit', displayName: 'Stock dépôts'},
                 {field:'isbn', displayName: 'ISBN'},
                 {field:'price', displayName: 'Prix'},
-                {field:'release', displayName: 'Date édition', visible: false},
-                {field:'summary', displayName: 'Résumé', visible: false}]
+                {field:'release', displayName: 'Date édition', visible: false}]
     showColumnMenu: true
+    showFilter: true
+    showGroupPanel: true
+    jqueryUIDraggable: true
+    multiSelect: false
 
   $scope.book = {}
-  $scope.book.authors = []
-  $scope.book.tags = []
+  $scope.book.author_ids = []
+  $scope.book.tag_ids = []
   $scope.select2Options =
     allowClear: true
     multiple: true
@@ -23,6 +26,7 @@
     $scope.books = data.books
     $scope.authors = data.authors
     $scope.distributors = data.distributors
+    $scope.tags = data.tags
 
   $scope.createBook = ->
     $http.post('/books', book: $scope.book).success (data) ->
@@ -34,7 +38,7 @@
     $('.portBox').trigger('portBox:close')
     $scope.author.id = Author.save({}, author: $scope.author)
     $scope.authors.push $scope.author
-    $scope.book.authors.push $scope.author.id
+    $scope.book.authors.push $scope.author
     $scope.author = {}
 
   $scope.createPublisher = ->
@@ -43,8 +47,9 @@
     $scope.book.publisher_id = $scope.publisher.id
 
   $scope.createCollection = ->
+    $scope.collection.publisher_id = $scope.publisher.id
     $scope.collection.id = Collection.save({}, collection: $scope.collection)
-    $scope.collections.push $scope.collection
+    $scope.publisher.collections.push $scope.collection
     $scope.book.collection_id = $scope.collection.id
 
   $scope.createDistributor = ->
@@ -55,6 +60,6 @@
   $scope.createTag = ->
     $scope.tag.id = Tag.save({}, tag: $scope.tag)
     $scope.tags.push $scope.tag
-    $scope.book.tags.push $scope.tag.id
+    $scope.book.tags.push $scope.tag
 
 ]

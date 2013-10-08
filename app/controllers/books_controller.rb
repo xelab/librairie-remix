@@ -1,9 +1,9 @@
 class BooksController < ApplicationController
   def index
     @books = Book.all
-    @collections = Collection.all
     @publishers = Publisher.all
     @authors = Author.all
+    @tags = Tag.all
   end
 
   def show
@@ -16,9 +16,10 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    # binding.pry
     unless @book.price.present?
       @book.price = 0
-    end  
+    end 
     if @book.save
       render json: @book.id
     end
@@ -32,6 +33,9 @@ class BooksController < ApplicationController
 
   private
     def book_params
-      params.require(:book).permit(:title, :price, :summary, :isbn, :release, :buy, :deposit, :distributor_id, :publisher_id, :collection_id)
+      params.require(:book).permit(:title, :price, :summary, :isbn, 
+                                   :release, :buy, :deposit, :distributor_id, 
+                                   :publisher_id, :collection_id, author_ids: [],
+                                   tag_ids: [])
     end
 end
