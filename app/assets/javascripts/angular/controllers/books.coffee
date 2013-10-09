@@ -12,8 +12,8 @@
                 {field:'authors', displayName: 'Auteurs', cellTemplate: '<span ng-repeat="author in row.entity[col.field]">{{author.lastname}} {{author.firstname}}<span ng-hide="$last">, </span></span>'},
                 {field:'tags', displayName: 'Catégories', cellTemplate: '<span ng-repeat="tag in row.entity[col.field]">{{tag.name}}<span ng-hide="$last">, </span></span>'  }]
     showColumnMenu: true
-    showFilter: true
-    showGroupPanel: true
+    # showFilter: true
+    # showGroupPanel: true
     jqueryUIDraggable: true
     multiSelect: false
 
@@ -36,6 +36,12 @@
   $scope.createBook = ->
     $http.post('/books', book: $scope.book).success (data) ->
       $scope.book.id = data
+      if $scope.book.author_ids.length > 0
+        $scope.book.authors = _.filter($scope.authors, (author) -> _.contains($scope.book.author_ids, "" + author.id))
+        
+      if $scope.book.tag_ids.length > 0
+        $scope.book.tags = _.filter($scope.tags, (tag) -> _.contains($scope.book.tag_ids, "" + tag.id))
+
       $scope.books.push $scope.book
       $scope.book = {}
 
