@@ -12,13 +12,14 @@
     
     %nav.navbar.navbar-default(role="navigation")
       = render 'layouts/navigation'
-    #main{:role => "main"}
-      .container
-        .content
-          .row
-            .span12
-              = render 'layouts/messages'
-              = yield
-          %footer
+
+    .custom-container
+      .row
+        .col-lg-12
+          .well
+            / .col-md-12
+            = render 'layouts/messages'
+            = yield
+  
       / ! end of .container
     / ! end of #main

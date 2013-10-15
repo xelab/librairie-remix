@@ -1,5 +1,11 @@
 @BooksCtrl = ['$scope', '$http', '$timeout', 'Author', 'Publisher', 'Collection', 'Distributor', 'Tag', ($scope, $http, $timeout, Author, Publisher, Collection, Distributor, Tag) ->
 
+
+  $scope.pagingOptions = 
+    pageSizes: [50, 200, 500, 1000]
+    pageSize: 50
+    currentPage: 1
+
   $scope.gridOptions = 
     data: 'books'
     rowHeight: 35
@@ -9,13 +15,17 @@
                 {field:'isbn', displayName: 'ISBN'},
                 {field:'price', displayName: 'Prix'},
                 {field:'release', displayName: 'Date édition', visible: false},
-                {field:'authors', displayName: 'Auteurs', cellTemplate: '<span ng-repeat="author in row.entity[col.field]">{{author.lastname}} {{author.firstname}}<span ng-hide="$last">, </span></span>'},
-                {field:'tags', displayName: 'Catégories', cellTemplate: '<span ng-repeat="tag in row.entity[col.field]">{{tag.name}}<span ng-hide="$last">, </span></span>'  }]
+                {field:'authors', displayName: 'Auteurs', cellTemplate: '<div class="ngCellText"><span ng-repeat="author in row.entity[col.field]">{{author.lastname}} {{author.firstname}}<span ng-hide="$last">, </span></span></div>'},
+                {field:'tags', displayName: 'Catégories', cellTemplate: '<div class="ngCellText"><span ng-repeat="tag in row.entity[col.field]">{{tag.name}}<span ng-hide="$last">, </span></span></div>'  }]
     showColumnMenu: true
+    enablePaging: true
+    pagingOptions: $scope.pagingOptions
+    showFooter: true
     # showFilter: true
     # showGroupPanel: true
     jqueryUIDraggable: true
     multiSelect: false
+
 
   $scope.book = {}
   $scope.book.author_ids = []
@@ -38,7 +48,7 @@
       $scope.book.id = data
       if $scope.book.author_ids.length > 0
         $scope.book.authors = _.filter($scope.authors, (author) -> _.contains($scope.book.author_ids, "" + author.id))
-        
+
       if $scope.book.tag_ids.length > 0
         $scope.book.tags = _.filter($scope.tags, (tag) -> _.contains($scope.book.tag_ids, "" + tag.id))
 
