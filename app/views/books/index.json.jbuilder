@@ -1,5 +1,5 @@
 json.books @books do |book|
-  json.(book, :id, :title, :buy, :deposit, :isbn, :price, :release, :title, :summary)
+  json.(book, :id, :title, :buy, :deposit, :isbn, :price, :release, :title, :summary, :author_ids, :tag_ids, :distributor_id, :publisher_id, :collection_id)
   json.authors book.authors do |author|
     json.(author, :lastname, :firstname)
   end

@@ -1,0 +1,94 @@
+#editModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close(aria-hidden="true" data-dismiss="modal" type="button" ng-click="edit=false") &times;
+        %h4.modal-title Modifier
+      .modal-body.well.well-lg
+        %form.form-horizontal(ng-submit='updateBook()' role='form')
+          .row
+            .col-md-6
+              .form-group
+                %label.col-lg-2.control-label(for='title') Titre
+                .col-lg-10
+                  %input.form-control(id='title' type='text' ng-model='currentBook.title' required)
+
+              .form-group
+                %label.col-lg-2.control-label(for='isbn') ISBN
+                .col-lg-10
+                  %input.form-control(type='text' id='isbn' ng-model='currentBook.isbn')
+
+              .form-group
+                %label.col-lg-2.control-label(for='distributor')
+                  Distributeur
+                .col-lg-10
+                  .input-group
+                    %select.form-control(ng-model='currentBook.distributor_id' ng-options='distributor.id as distributor.name for distributor in distributors' id='distributor')
+                    %span.input-group-btn
+                      %button.btn.btn-default(type='button' data-display="distributorBox" title="Créer un nouveau distributeur") +
+
+              .form-group
+                %label.col-lg-2.control-label(for='publisher')
+                  Éditeur
+                .col-lg-10
+                  .input-group
+                    %select.form-control(ng-model='currentBook.publisher_id' ng-options='publisher.id as publisher.name for publisher in publisher' id='publisher')
+                    %span.input-group-btn
+                      %a.btn.btn-default(href="#" data-display="publisherBox" title="Créer un nouvel éditeur") +
+
+              .form-group(ng-show='publisher')
+                %label.col-lg-2.control-label(for='collection')
+                  Collection
+                .col-lg-10
+                  .input-group
+                    %select.form-control(ng-model='currentBook.collection_id' ng-options='collection.id as collection.name for collection in publisher.collections' id='collection')
+                    %span.input-group-btn
+                      %button.btn.btn-default(type='button' data-display="collectionBox" title="Créer une nouvelle collection") +
+
+              .form-group
+                %label.col-lg-2.control-label(for='author')
+                  Auteurs
+                .col-lg-10
+                  .input-group
+                    %select.form-control(ui-select2="select2Options" ng-model="currentBook.author_ids" data-placeholder="Choisissez un auteur" multiple="multiple")
+                      %option(value="")
+                      %option(ng-repeat="author in authors" value="{{author.id}}") {{ author.lastname }} {{ author.firstname }}
+                    %span.input-group-btn
+                      %a.btn.btn-default(href="#" data-display="authorBox" title="Créer un nouvel auteur") +
+
+            .col-md-6
+
+              .form-group
+                %label.col-lg-2.control-label(for='price') Prix
+                .col-lg-10
+                  %input.form-control(id='price' type='text' ng-model='currentBook.price')
+
+              .form-group
+                %label.col-lg-2.control-label(for='buy') Qté achat ferme
+                .col-lg-10
+                  %input.form-control(id='price' type='number' ng-model='currentBook.buy')
+
+              .form-group
+                %label.col-lg-2.control-label(for='deposit') Qté en dépot
+                .col-lg-10
+                  %input.form-control(id='price' type='number' ng-model='currentBook.deposit')
+
+              .form-group
+                %label.col-lg-2.control-label(for='tag')
+                  Catégories
+                .col-lg-10
+                  .input-group
+                    %select.form-control(ui-select2="select2Options" ng-model="currentBook.tag_ids" data-placeholder="Choisissez une catégorie"  multiple="multiple")
+                      %option(value="")
+                      %option(ng-repeat="tag in tags" value="{{tag.id}}") {{ tag.name}}
+                    %span.input-group-btn
+                      %a.btn.btn-default(href="#" data-display="tagBox" title="Créer une nouvelle catégorie") +
+
+              .form-group
+                %label.col-lg-2.control-label(for='summary')
+                  Résumé
+                .col-lg-10
+                  %textarea.form-control(ng-model='currentBook.summary' id='summary')
+          .modal-footer
+            %button.btn.btn-default(data-dismiss="modal" type="button" ng-click="edit=false") Annuler
+            %button.btn.btn-primary{:type => "submit"} Enregistrer

@@ -83,10 +83,10 @@
                 %a.btn.btn-default(href="#" data-display="tagBox" title="Créer une nouvelle catégorie") +
 
         .form-group
-          %label.col-lg-2.control-label(for='resume')
+          %label.col-lg-2.control-label(for='summary')
             Résumé
           .col-lg-10
-            %textarea.form-control(ng-model='book.resume' id='resume')
+            %textarea.form-control(ng-model='book.summary' id='summary')
 
 
   %button.btn.btn-default(ng-click='showForm=!showForm' ng-hide='showForm') Nouveau
@@ -98,6 +98,7 @@
   = render 'collection'
   = render 'distributor'
   = render 'tag'
+  = render 'edit'
 
   .row
     .col-lg-12

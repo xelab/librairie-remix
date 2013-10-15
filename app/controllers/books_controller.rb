@@ -12,6 +12,12 @@ class BooksController < ApplicationController
   end
 
   def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      render json: 'ok'
+    else
+      render json: @book.errors
+    end
   end
 
   def create
