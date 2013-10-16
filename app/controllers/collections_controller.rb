@@ -24,7 +24,7 @@ class CollectionsController < ApplicationController
   # POST /collections
   # POST /collections.json
   def create
-    @collection = Author.new(author_params)
+    @collection = Collection.new(collection_params)
 
     if @collection.save
       render json: @collection.id
