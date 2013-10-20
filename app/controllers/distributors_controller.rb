@@ -27,7 +27,7 @@ class DistributorsController < ApplicationController
     @distributor = Distributor.new(distributor_params)
 
     if @distributor.save
-      render json: @distributor.id
+      render json: { id: @distributor.id }
     end
   end
 

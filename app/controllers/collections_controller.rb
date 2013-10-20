@@ -27,7 +27,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.new(collection_params)
 
     if @collection.save
-      render json: @collection.id
+      render json: {id: @collection.id }
     end
   end
 

@@ -27,7 +27,7 @@ class BooksController < ApplicationController
       @book.price = 0
     end 
     if @book.save
-      render json: @book.id
+      render json: { id: @book.id }
     end
   end
 

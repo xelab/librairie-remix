@@ -150,53 +150,64 @@
 
   $scope.createAuthor = ->
     $('.portBox').trigger('portBox:close')
-    $scope.author.id = Author.save({}, author: $scope.author)
-    $scope.authors.push $scope.author
-    if $scope.edit
-      $scope.currentBook.author_ids.push $scope.author.id
-    else
-      $scope.book.author_ids.push $scope.author.id
-    $scope.author = {}
+    Author.save {}, author: $scope.author, (data) ->
+      $scope.author.id = data.id
+      $scope.authors.push $scope.author
+      if $scope.edit
+        $scope.currentBook.author_ids.push $scope.author.id
+      else
+        $scope.book.author_ids.push $scope.author.id
+      $scope.author = {}
+
+  $scope.$watch 'book.publisher_id', -> $scope.setPublisher()
 
   $scope.setPublisher = ->
-    if $scope.edit
-      $scope.currentBook.publisher = _.findWhere($scope.publishers, {id: $scope.currentBook.publisher_id})
-    else
-      $scope.book.publisher = _.findWhere($scope.publishers, {id: $scope.book.publisher_id})
+    if $scope.currentBook.publisher_id || $scope.book.publisher_id
+      if $scope.edit
+        $scope.currentBook.publisher = _.findWhere($scope.publishers, {id: $scope.currentBook.publisher_id})
+        unless $scope.currentBook.publisher.collections?
+          $scope.currentBook.publisher.collections = []
+      else
+        $scope.book.publisher = _.findWhere($scope.publishers, {id: $scope.book.publisher_id})
+        unless $scope.book.publisher.collections?
+          $scope.book.publisher.collections = []
 
   $scope.createPublisher = ->
     $('.portBox').trigger('portBox:close')
-    $scope.publisher.id = Publisher.save({}, publisher: $scope.publisher)
-    $scope.publishers.push $scope.publisher
-    if $scope.edit
-      $scope.currentBook.publisher_id = $scope.publisher.id
-    else
-      $scope.book.publisher_id = $scope.publisher.id
-    $scope.publisher = {}
+    Publisher.save {}, publisher: $scope.publisher, (data) ->
+      $scope.publisher.id = data.id
+      $scope.publishers.push $scope.publisher
+      if $scope.edit
+        $scope.currentBook.publisher_id = $scope.publisher.id
+      else
+        $scope.book.publisher_id = $scope.publisher.id
+      $scope.publisher = {}
 
   $scope.createCollection = ->
     $('.portBox').trigger('portBox:close')
     if $scope.edit
-      $scope.collection.publisher_id = $scope.currentBook.publisher.id
+      $scope.collection.publisher_id = $scope.currentBook.publisher_id
     else
-      $scope.collection.publisher_id = $scope.book.publisher.id
-    $scope.collection.id = Collection.save({}, collection: $scope.collection)
-    $scope.book.publisher.collections.push $scope.collection
-    if $scope.edit
-      $scope.currentBook.collection_id = $scope.collection.id
-    else
-      $scope.book.collection_id = $scope.collection.id
-    $scope.collection = {}
+      $scope.collection.publisher_id = $scope.book.publisher_id
+    Collection.save {}, collection: $scope.collection, (data) ->
+      $scope.collection.id = data.id
+      $scope.book.publisher.collections.push $scope.collection
+      if $scope.edit
+        $scope.currentBook.collection_id = $scope.collection.id
+      else
+        $scope.book.collection_id = $scope.collection.id
+      $scope.collection = {}
 
   $scope.createDistributor = ->
     $('.portBox').trigger('portBox:close')
-    $scope.distributor.id = Distributor.save({}, distributor: $scope.distributor)
-    $scope.distributors.push $scope.distributor
-    if $scope.edit
-      $scope.currentBook.distributor_id = $scope.distributor.id
-    else
-      $scope.book.distributor_id = $scope.distributor.id
-    $scope.distributor = {}
+    Distributor.save {}, distributor: $scope.distributor, (data) ->
+      $scope.distributor.id = data.id
+      $scope.distributors.push $scope.distributor
+      if $scope.edit
+        $scope.currentBook.distributor_id = $scope.distributor.id
+      else
+        $scope.book.distributor_id = $scope.distributor.id
+      $scope.distributor = {}
 
   $scope.createTag = ->
     $('.portBox').trigger('portBox:close')
@@ -204,9 +215,9 @@
       $scope.tag.id = data.id
       $scope.tags.push $scope.tag
       if $scope.edit
-        $scope.currentBook.tag_ids.push "" + $scope.tag.id
+        $scope.currentBook.tag_ids.push $scope.tag.id
       else
-        $scope.book.tag_ids.push "" + $scope.tag.id
+        $scope.book.tag_ids.push $scope.tag.id
       $scope.tag = {}
 
 ]

@@ -27,7 +27,7 @@ class PublishersController < ApplicationController
     @publisher = Publisher.new(publisher_params)
 
     if @publisher.save
-      render json: @publisher.id
+      render json: {id: @publisher.id }
     end
   end
 

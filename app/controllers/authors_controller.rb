@@ -27,7 +27,7 @@ class AuthorsController < ApplicationController
     @author = Author.new(author_params)
 
     if @author.save
-      render json: @author.id
+      render json: {id: @author.id}
     end
   end
 
