@@ -32,16 +32,16 @@
                   Éditeur
                 .col-lg-10
                   .input-group
-                    %select.form-control(ng-model='currentBook.publisher_id' ng-options='publisher.id as publisher.name for publisher in publisher' id='publisher')
+                    %select.form-control(ng-model='currentBook.publisher_id' ng-options='publisher.id as publisher.name for publisher in publishers' id='publisher')
                     %span.input-group-btn
                       %a.btn.btn-default(href="#" data-display="publisherBox" title="Créer un nouvel éditeur") +
 
-              .form-group(ng-show='publisher')
+              .form-group(ng-show='currentBook.publisher_id')
                 %label.col-lg-2.control-label(for='collection')
                   Collection
                 .col-lg-10
                   .input-group
-                    %select.form-control(ng-model='currentBook.collection_id' ng-options='collection.id as collection.name for collection in publisher.collections' id='collection')
+                    %select.form-control(ng-model='currentBook.collection_id' ng-options='collection.id as collection.name for collection in currentBook.publisher.collections' id='collection')
                     %span.input-group-btn
                       %button.btn.btn-default(type='button' data-display="collectionBox" title="Créer une nouvelle collection") +
 
@@ -50,7 +50,7 @@
                   Auteurs
                 .col-lg-10
                   .input-group
-                    %select.form-control(ui-select2="select2Options" ng-model="currentBook.author_ids" data-placeholder="Choisissez un auteur" multiple="multiple")
+                    %select.form-control(ng-model="currentBook.author_ids" data-placeholder="Choisissez un auteur" multiple id="author")
                       %option(value="")
                       %option(ng-repeat="author in authors" value="{{author.id}}") {{ author.lastname }} {{ author.firstname }}
                     %span.input-group-btn
@@ -78,7 +78,7 @@
                   Catégories
                 .col-lg-10
                   .input-group
-                    %select.form-control(ui-select2="select2Options" ng-model="currentBook.tag_ids" data-placeholder="Choisissez une catégorie"  multiple="multiple")
+                    %select.form-control(ng-model="currentBook.tag_ids" data-placeholder="Choisissez une catégorie"  multiple id='tag')
                       %option(value="")
                       %option(ng-repeat="tag in tags" value="{{tag.id}}") {{ tag.name}}
                     %span.input-group-btn

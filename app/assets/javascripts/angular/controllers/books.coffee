@@ -81,6 +81,14 @@
 
   $scope.initializeBook()
 
+
+  $scope.publishers = []
+  $scope.books = []
+  $scope.fullBooks = []
+  $scope.authors = []
+  $scope.distributors = []
+  $scope.tags = []
+
   $http.get("/books.json").success (data) ->
     $scope.publishers = data.publishers
     $scope.books = data.books
@@ -90,9 +98,20 @@
     $scope.tags = data.tags
 
   $scope.open = ->
-    $scope.currentBook = angular.copy($scope.selectedRows[0])
     $scope.edit = yes
-    $('#editModal').modal()
+    $scope.currentBook = angular.copy($scope.selectedRows[0])
+    console.log $scope.selectedRows
+    $scope.currentBook.author_ids = _.map($scope.currentBook.author_ids, (id) -> id.toString()) if $scope.currentBook.author_ids
+    $scope.currentBook.distributor_ids = _.map($scope.currentBook.distributor_ids, (id) -> id.toString()) if $scope.currentBook.distributor_ids
+    $scope.currentBook.tag_ids = _.map($scope.currentBook.tag_ids, (id) -> id.toString()) if $scope.currentBook.tag_ids
+    $scope.setPublisher()
+
+    $timeout ->
+      # waiting for working ng-select2...
+      $("#author").select2()
+      $("#tag").select2()
+      $('#editModal').modal()
+      
 
   $scope.createBook = ->
     $http.post('/books', book: $scope.book).success (data) ->

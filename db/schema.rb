@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008144018) do
+ActiveRecord::Schema.define(version: 20131023222937) do
 
   create_table "authors", force: true do |t|
     t.string   "lastname"
@@ -27,14 +27,14 @@ ActiveRecord::Schema.define(version: 20131008144018) do
     t.integer "book_id",   null: false
   end
 
-  add_index "authors_books", ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id"
-  add_index "authors_books", ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id"
+  add_index "authors_books", ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id", using: :btree
+  add_index "authors_books", ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id", using: :btree
 
   create_table "books", force: true do |t|
-    t.integer  "isbn"
+    t.decimal  "isbn",           precision: 64, scale: 12
     t.integer  "collection_id"
     t.integer  "publisher_id"
-    t.decimal  "price",          precision: 8, scale: 2
+    t.decimal  "price",          precision: 8,  scale: 2
     t.date     "release"
     t.string   "title"
     t.text     "summary"
@@ -45,17 +45,17 @@ ActiveRecord::Schema.define(version: 20131008144018) do
     t.integer  "distributor_id"
   end
 
-  add_index "books", ["collection_id"], name: "index_books_on_collection_id"
-  add_index "books", ["distributor_id"], name: "index_books_on_distributor_id"
-  add_index "books", ["publisher_id"], name: "index_books_on_publisher_id"
+  add_index "books", ["collection_id"], name: "index_books_on_collection_id", using: :btree
+  add_index "books", ["distributor_id"], name: "index_books_on_distributor_id", using: :btree
+  add_index "books", ["publisher_id"], name: "index_books_on_publisher_id", using: :btree
 
   create_table "books_tags", id: false, force: true do |t|
     t.integer "book_id", null: false
     t.integer "tag_id",  null: false
   end
 
-  add_index "books_tags", ["book_id", "tag_id"], name: "index_books_tags_on_book_id_and_tag_id"
-  add_index "books_tags", ["tag_id", "book_id"], name: "index_books_tags_on_tag_id_and_book_id"
+  add_index "books_tags", ["book_id", "tag_id"], name: "index_books_tags_on_book_id_and_tag_id", using: :btree
+  add_index "books_tags", ["tag_id", "book_id"], name: "index_books_tags_on_tag_id_and_book_id", using: :btree
 
   create_table "collections", force: true do |t|
     t.integer  "publisher_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20131008144018) do
     t.datetime "updated_at"
   end
 
-  add_index "collections", ["publisher_id"], name: "index_collections_on_publisher_id"
+  add_index "collections", ["publisher_id"], name: "index_collections_on_publisher_id", using: :btree
 
   create_table "distributors", force: true do |t|
     t.string   "name"
