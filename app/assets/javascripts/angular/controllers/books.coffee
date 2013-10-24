@@ -78,6 +78,8 @@
     $scope.currentBook.tag_ids = []
     $scope.currentBook.tags = []
     $scope.currentBook.authors = []
+    $("#bookAuthor").select2("val", "")
+    $("#bookTag").select2("val", "")
 
   $scope.initializeBook()
 
@@ -96,16 +98,19 @@
     $scope.authors = data.authors
     $scope.distributors = data.distributors
     $scope.tags = data.tags
+    $("#bookAuthor").select2()
+    $("#bookTag").select2()
 
   $scope.open = ->
     $scope.edit = yes
     $scope.currentBook = angular.copy($scope.selectedRows[0])
     console.log $scope.selectedRows
-    $scope.currentBook.author_ids = _.map($scope.currentBook.author_ids, (id) -> id.toString()) if $scope.currentBook.author_ids
-    $scope.currentBook.distributor_ids = _.map($scope.currentBook.distributor_ids, (id) -> id.toString()) if $scope.currentBook.distributor_ids
-    $scope.currentBook.tag_ids = _.map($scope.currentBook.tag_ids, (id) -> id.toString()) if $scope.currentBook.tag_ids
-    $scope.setPublisher()
-
+    $timeout ->
+      $scope.setPublisher()
+      $scope.currentBook.author_ids = _.map($scope.currentBook.author_ids, (id) -> id.toString()) if $scope.currentBook.author_ids
+      $scope.currentBook.distributor_ids = _.map($scope.currentBook.distributor_ids, (id) -> id.toString()) if $scope.currentBook.distributor_ids
+      $scope.currentBook.tag_ids = _.map($scope.currentBook.tag_ids, (id) -> id.toString()) if $scope.currentBook.tag_ids
+    
     $timeout ->
       # waiting for working ng-select2...
       $("#author").select2()

@@ -3,7 +3,7 @@
 # Table name: books
 #
 #  id             :integer          not null, primary key
-#  isbn           :decimal(64, 12)
+#  isbn           :integer
 #  collection_id  :integer
 #  publisher_id   :integer
 #  price          :decimal(8, 2)

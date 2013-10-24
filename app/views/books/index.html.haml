@@ -40,16 +40,16 @@
                 %button.btn.btn-default(type='button' data-display="collectionBox" title="Créer une nouvelle collection") +
 
         .form-group
-          %label.col-lg-2.control-label(for='author')
+          %label.col-lg-2.control-label(for='bookAuthor')
             Auteurs
           .col-lg-10
             .input-group
-              %select.form-control(ui-select2="select2Options" ng-model="book.author_ids" data-placeholder="Choisissez un auteur" multiple="multiple")
+              %select.form-control(ng-model="book.author_ids" data-placeholder="Choisissez un auteur" multiple id="bookAuthor")
                 %option(value="")
                 %option(ng-repeat="author in authors" value="{{author.id}}") {{ author.lastname }} {{ author.firstname }}
               %span.input-group-btn
                 %a.btn.btn-default(href="#" data-display="authorBox" title="Créer un nouvel auteur") +
-
+                
         .form-group
           .col-lg-2
             %button.btn.btn-primary(type="submit") Valider
@@ -72,11 +72,11 @@
             %input.form-control(id='price' type='number' ng-model='book.deposit')
 
         .form-group
-          %label.col-lg-2.control-label(for='tag')
+          %label.col-lg-2.control-label(for='bookTag')
             Catégories
           .col-lg-10
             .input-group
-              %select.form-control(ui-select2="select2Options" ng-model="book.tag_ids" data-placeholder="Choisissez une catégorie"  multiple="multiple")
+              %select.form-control(ng-model="book.tag_ids" data-placeholder="Choisissez une catégorie"  multiple id="bookTag")
                 %option(value="")
                 %option(ng-repeat="tag in tags" value="{{tag.id}}") {{ tag.name}}
               %span.input-group-btn
