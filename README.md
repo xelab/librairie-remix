@@ -113,7 +113,7 @@ Ensuite, il est nécessaire de modifier la configuration de nginx:
 sudo nano /opt/nginx/conf/nginx.conf
 ```
 
-Dans le bloc *location /*, remplacez les lignes existantes pas:
+Dans le bloc *location /*, supprimez les lignes existantes pour mettre celles-ci à la place:
 
 ```text
 location / {
