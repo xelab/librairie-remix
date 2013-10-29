@@ -3,7 +3,7 @@ librairie21
 
 # Application simplifiée de gestion de librairie
 
-Cette application est initialement développée pour la [librairie associative Les Nuits Bleues à Angers](http://lesnuitsbleues.blogspot.fr/). Son but est de gérer le stock d'ouvrages, les ventes et les commandes.
+Cette application est initialement développée pour une librairie associative possédant un millier d'ouvrages. Son but est de gérer le stock d'ouvrages, les ventes et les commandes.
 Elle est actuellement en version beta et dispose d'un nombre de fonctionnalités encore limité.
 
 ## Installation
