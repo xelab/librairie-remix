@@ -41,9 +41,9 @@ group :development, :test do
   gem 'thin'
 end
 
-group :production do
-  gem 'unicorn'
-end
+# group :production do
+#   gem 'unicorn'
+# end
 
 group :test do
   gem 'capybara'
