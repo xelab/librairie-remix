@@ -90,5 +90,10 @@
                 .col-lg-10
                   %textarea.form-control(ng-model='currentBook.summary' id='summary')
           .modal-footer
-            %button.btn.btn-default(data-dismiss="modal" type="button" ng-click="edit=false") Annuler
-            %button.btn.btn-primary{:type => "submit"} Enregistrer
+            .row
+              .col-md-10.update
+                .btn.btn-danger.del(ng-click='deleteBook()') Supprimer
+              .col-md-1.update  
+                %button.btn.btn-default(data-dismiss="modal" type="button" ng-click="edit=false") Annuler
+              .col-md-1.update
+                %button.btn.btn-primary{:type => "submit"} Enregistrer

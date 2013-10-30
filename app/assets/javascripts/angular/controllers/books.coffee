@@ -172,6 +172,15 @@
         $scope.$emit('ngGridEventEndCellEdit')
         $scope.initializeBook()
 
+  $scope.deleteBook = ->
+    del = confirm("Êtes-vous sûr de supprimer ce livre?")
+    if del
+      $http.delete('/books/' + $scope.currentBook.id).success (data) ->
+        $scope.books.splice(_.indexOf($scope.books, $scope.currentBook), 1)
+        $scope.edit = no
+        $('#editModal').modal('hide')
+        $scope.initializeBook()
+
   $scope.createAuthor = ->
     $('.portBox').trigger('portBox:close')
     Author.save {}, author: $scope.author, (data) ->
