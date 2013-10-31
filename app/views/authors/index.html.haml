@@ -1,17 +1,10 @@
-%h1 Listing authors
+%div(ng-controller='AuthorsCtrl')
+  %form.form-horizontal(ng-submit='createAuthor()' ng-show='showForm' role='form')
+    .row
+      .col-md-6
+        .form-group
+          %label.col-lg-2.control-label(for='title') Titre
+          .col-lg-10
+            %input.form-control(id='title' type='text' ng-model='book.title' required)
 
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @authors.each do |author|
-    %tr
-      %td= link_to 'Show', author
-      %td= link_to 'Edit', edit_author_path(author)
-      %td= link_to 'Destroy', author, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Author', new_author_path
+  = render 'books/author'
