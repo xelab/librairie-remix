@@ -24,7 +24,7 @@
   $scope.filterOptions =
     filterText: ''
 
-  $scope.selectedRows=[]
+  $scope.selectedRows = []
   $scope.gridOptions = 
     data: 'books'
     rowHeight: 30
@@ -104,7 +104,7 @@
   $scope.open = ->
     $scope.edit = yes
     $scope.currentBook = angular.copy($scope.selectedRows[0])
-    console.log $scope.selectedRows
+    
     $timeout ->
       $scope.setPublisher()
       $scope.currentBook.author_ids = _.map($scope.currentBook.author_ids, (id) -> id.toString()) if $scope.currentBook.author_ids

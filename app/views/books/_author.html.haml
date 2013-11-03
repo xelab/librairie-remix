@@ -1,6 +1,8 @@
 #authorBox.portBox
-  %h3 Nouvel auteur
+  %h3(ng-if='!authorPage') Nouvel auteur
+  %h3(ng-if='authorPage') Modifier auteur
   %h4 Seul le nom est obligatoire
+  
   .row
     .col-md-12
       %form.form-horizontal(ng-submit='createAuthor()' role='form')
