@@ -41,4 +41,15 @@
     # $('#authorBox').trigger('portBox:open')
     # $('.portBox').css {'display':'block'}
     $scope.author = angular.copy($scope.selectedRows[0])
+
+  $scope.deleteAuthor = ->
+    del = confirm("Êtes-vous sûr de supprimer cet auteur? Note: supprimez ou modifiez les ouvrages liés à cet auteur pour pouvoir le supprimer.")
+    
+  $scope.createAuthor = ->
+    $http.put('/authors/' + $scope.author.id + '.json', author: $scope.author).success (data) ->
+      authors = angular.copy $scope.authors
+      (oldAuthor = author if author.id is $scope.author.id) for author in $scope.authors
+      authors[_.indexOf($scope.authors, oldAuthor)] = $scope.author
+      $scope.authors = authors
+      $('.portBox').trigger('portBox:close')
 ]

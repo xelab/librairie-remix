@@ -28,3 +28,7 @@
 
         
         %button.btn.btn-primary(type="submit") Valider
+        .btn.btn-danger(ng-if='authorPage' ng-click="deleteAuthor()") Supprimer
+
+  .row(ng-if='authorPage')
+    
