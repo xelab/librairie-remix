@@ -19,6 +19,9 @@
     pageSize: 50
     currentPage: 1
 
+  $scope.currentSale = {}
+  $scope.currentSale.price = 0
+
   $scope.filterType = 'title'
 
   $scope.filterOptions =
@@ -66,6 +69,15 @@
   $scope.select2Options =
     allowClear: true
     multiple: true
+
+  $scope.setSalePrice = ->
+    if $scope.currentBook.price?
+      if $scope.currentSale.buy_quantity
+        $scope.currentSale.price = $scope.currentBook.price * $scope.currentSale.buy_quantity
+      else
+        $scope.currentSale.price = 0
+      if $scope.currentSale.price || $scope.currentSale.deposit_quantity
+        $scope.currentSale.price += $scope.currentBook.price * $scope.currentSale.deposit_quantity if $scope.currentSale.deposit_quantity
 
   $scope.initializeBook = ->
     $scope.book = {}

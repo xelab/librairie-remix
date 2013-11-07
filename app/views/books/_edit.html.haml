@@ -3,9 +3,37 @@
     .modal-content
       .modal-header
         %button.close(aria-hidden="true" data-dismiss="modal" type="button" ng-click="edit=false") &times;
-        %h4.modal-title Modifier
+        %h3.modal-title Ventes et modifications
       .modal-body.well.well-lg
+        %form.form-horizontal(ng-submit='addSale()' role='form' ng-if='currentBook.buy || currentBook.deposit')
+          %h4 Ajouter une vente
+          .row
+            .col-md-6
+              .form-group(ng-if='currentBook.buy')
+                %label.col-lg-2.control-label(for='buy_quantity') Qté achat ferme
+                .col-lg-10
+                  %input.form-control(id='buy_qantity' type='number' min="0" max="{{currentBook.buy}}" ng-model='currentSale.buy_quantity' ng-change='setSalePrice()')
+
+              .form-group(ng-if='currentBook.deposit')
+                %label.col-lg-2.control-label(for='deposit_quantity') Qté en dépot
+                .col-lg-10
+                  %input.form-control(id='deposit_qantity' min="0" max="{{currentBook.deposit}}" type='number' ng-model='currentSale.deposit_quantity' ng-change='setSalePrice()')
+
+            .col-md-6
+              .form-group
+                %label.col-lg-2.control-label(for='sale_price') Total
+                .col-lg-10
+                  %input.form-control(id='sale_price' type='text' ng-model='currentSale.price')
+
+              .form-group
+                .col-lg-2
+                .col-lg-10
+                  %button.btn.btn-primary(type='submit') Enregistrer
+
+          %hr
+
         %form.form-horizontal(ng-submit='updateBook()' role='form')
+          %h4 Modifier
           .row
             .col-md-6
               .form-group
@@ -66,19 +94,19 @@
               .form-group
                 %label.col-lg-2.control-label(for='buy') Qté achat ferme
                 .col-lg-10
-                  %input.form-control(id='price' type='number' ng-model='currentBook.buy')
+                  %input.form-control(id='buy' type='number' ng-model='currentBook.buy')
 
               .form-group
                 %label.col-lg-2.control-label(for='deposit') Qté en dépot
                 .col-lg-10
-                  %input.form-control(id='price' type='number' ng-model='currentBook.deposit')
+                  %input.form-control(id='deposit' type='number' ng-model='currentBook.deposit')
 
               .form-group
                 %label.col-lg-2.control-label(for='tag')
                   Catégories
                 .col-lg-10
                   .input-group
-                    %select.form-control(ng-model="currentBook.tag_ids" data-placeholder="Choisissez une catégorie"  multiple id='tag')
+                    %select.form-control(ng-model="currentBook.tag_ids" data-placeholder="Choisissez une catégorie" multiple id='tag')
                       %option(value="")
                       %option(ng-repeat="tag in tags" value="{{tag.id}}") {{ tag.name}}
                     %span.input-group-btn
@@ -89,11 +117,10 @@
                   Résumé
                 .col-lg-10
                   %textarea.form-control(ng-model='currentBook.summary' id='summary')
-          .modal-footer
-            .row
-              .col-md-10.update
-                .btn.btn-danger.del(ng-click='deleteBook()') Supprimer
-              .col-md-1.update  
-                %button.btn.btn-default(data-dismiss="modal" type="button" ng-click="edit=false") Annuler
-              .col-md-1.update
-                %button.btn.btn-primary{:type => "submit"} Enregistrer
+          .row
+            .col-md-8.update
+              .btn.btn-danger.del(ng-click='deleteBook()') Supprimer
+            .col-md-2.update  
+              %button.btn.btn-default(data-dismiss="modal" type="button" ng-click="edit=false") Annuler
+            .col-md-2.update
+              %button.btn.btn-primary{:type => "submit"} Enregistrer
