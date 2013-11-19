@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Sale:
+  = @sale_line.sale_id
+%p
+  %b Book:
+  = @sale_line.book_id
+%p
+  %b Buy quantity:
+  = @sale_line.buy_quantity
+%p
+  %b Deposit quantity:
+  = @sale_line.deposit_quantity
+%p
+  %b Price:
+  = @sale_line.price
+
+= link_to 'Edit', edit_sale_line_path(@sale_line)
+\|
+= link_to 'Back', sale_lines_path

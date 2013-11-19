@@ -1,0 +1,27 @@
+%h1 Listing sale_lines
+
+%table
+  %tr
+    %th Sale
+    %th Book
+    %th Buy quantity
+    %th Deposit quantity
+    %th Price
+    %th
+    %th
+    %th
+
+  - @sale_lines.each do |sale_line|
+    %tr
+      %td= sale_line.sale_id
+      %td= sale_line.book_id
+      %td= sale_line.buy_quantity
+      %td= sale_line.deposit_quantity
+      %td= sale_line.price
+      %td= link_to 'Show', sale_line
+      %td= link_to 'Edit', edit_sale_line_path(sale_line)
+      %td= link_to 'Destroy', sale_line, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Sale line', new_sale_line_path
